@@ -1,0 +1,23 @@
+title: KPI Reporter
+description: >-
+  KPI Reporter is a developer-friendly, highly customizable tool for sending
+  periodic reports for the metrics that matter for your team or project.
+url: https://kpireporter.com
+header_pages:
+  - about.md
+  - pricing.md
+  - blog.md
+
+author:
+  name: Jason Anderson
+  email: help@kpireporter.com
+
+theme: minima
+minima:
+  social_links:
+    github: kpireporter
+    twitter: False
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
