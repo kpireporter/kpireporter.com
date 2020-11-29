@@ -104,17 +104,14 @@ body {
   }
 }
 
-.logo-row {
-  margin: $spacing-unit auto 0;
-  .plugin-logo {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: $spacing-unit;
-    :first-child {
-      margin-left: 0;
-    }
-    img {
-      display: block;
-    }
+.plugin-logo {
+  display: inline-block;
+  vertical-align: middle;
+  margin: $spacing-unit $spacing-unit 0 0;
+  :first-child {
+    margin-left: 0;
+  }
+  img {
+    display: block;
   }
 }

@@ -70,37 +70,33 @@ layout: default
 <section class="feature-box full">
   <h2>Leverage an ever-growing library of integrations.</h2>
   <div>
-    <div class="logo-row">
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_mariadb.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_jenkins.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_prometheus.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_sendgrid.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_pagerduty.svg" />
-      </a>
-    </div>
-    <div class="logo-row">
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_slack.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_python.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_s3.svg" />
-      </a>
-      <a class="plugin-logo">
-        <img src="/assets/img/logo_elasticsearch.svg" />
-      </a>
-    </div>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/mysql.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_mariadb.svg" />
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/jenkins.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_jenkins.svg" />
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/prometheus.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_prometheus.svg" />
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/sendgrid.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_sendgrid.svg" />
+    </a>
+    <a class="plugin-logo">
+      <img src="/assets/img/logo_pagerduty.svg" />
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/slack.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_slack.svg" />
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/plot.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_python.svg" />
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/s3.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      <img src="/assets/img/logo_s3.svg" />
+    </a>
+    <a class="plugin-logo">
+      <img src="/assets/img/logo_elasticsearch.svg" />
+    </a>
   </div>
 </section>
 <section class="feature-box dark full">
