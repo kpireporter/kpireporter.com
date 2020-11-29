@@ -1,0 +1,120 @@
+body {
+  font-family: $font-family;
+}
+
+.site-header,
+.site-footer {
+  border: 0;
+}
+
+.site-header {
+  line-height: $header-height;
+  min-height: $header-height;
+}
+
+.page-content {
+  padding: 0;
+}
+
+.site-hero {
+  position: relative;
+  background-color: $brand-color;
+  padding: $spacing-unit $spacing-unit 0;
+  margin: 0 (-$spacing-unit) 0 (-$spacing-unit);
+  text-align: center;
+  h1 {
+    font-size: $base-font-size * 1.5;
+    max-width: 610px;
+    margin: 0 auto;
+  }
+  .shadow-box {
+    background-image: linear-gradient(0, rgba(0, 0, 0, .3) , rgba(0, 0, 0, 0) 12px);
+    height: 12px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  .examples {
+    display: flex;
+    margin-top: $spacing-unit;
+  }
+  .example {
+    flex: 1;
+    h3 {
+      color: #6FCF97;
+    }
+    .screenshot-container {
+      display: block;
+      height: 158px;
+      overflow: hidden;
+      margin: 0 auto;
+      img {
+        display: block;
+        position: relative;
+        top: 0;
+        width: 228px;
+      }
+    }
+  }
+}
+
+.feature-box {
+  display: flex;
+  margin: ($spacing-unit * 2) (-$spacing-unit);
+  &.dark {
+    border-radius: 10px;
+    padding: $spacing-unit;
+    background-color: $background-color-accent;
+  }
+  &.r-align {
+    flex-direction: row-reverse;
+    .text-inset {
+      margin: 0 0 0 $spacing-unit;
+    }
+    .graphic-inset {
+      text-align: left;
+    }
+  }
+  &.full {
+    display: block;
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: ($spacing-unit / 4);
+    font-weight: bold;
+    .subheading {
+      color: $text-color-accent;
+    }
+  }
+  .text-inset {
+    flex: 2;
+    margin: 0 $spacing-unit 0 0;
+    p {
+      color: $text-color-accent;
+      margin: 0;
+    }
+  }
+  .graphic-inset {
+    flex: 3;
+    text-align: right;
+    &.flush {
+      margin: -$spacing-unit;
+    }
+  }
+}
+
+.logo-row {
+  margin: $spacing-unit auto 0;
+  .plugin-logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: $spacing-unit;
+    :first-child {
+      margin-left: 0;
+    }
+    img {
+      display: block;
+    }
+  }
+}
