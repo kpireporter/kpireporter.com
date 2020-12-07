@@ -220,3 +220,20 @@ a {
     background: lighten($brand-color, 10%);
   }
 }
+
+.gumroad-product-embed {
+  text-align: center;
+  padding-top: $spacing-unit;
+}
+
+.post-header,
+.page-heading {
+  text-align: center;
+  margin-top: $spacing-unit;
+}
+
+pre, code {
+  background: $background-color-accent;
+  border: 0;
+  padding: 3px 8px;
+}

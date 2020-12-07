@@ -112,7 +112,7 @@ layout: default
         Save development time.<br>
         Cross this off your list.
       </p>
-      <a class="pricing-button" href="https://gum.co/JDoaK" target="_blank">$99/year</a>
+      <a class="pricing-button" href="https://gum.co/JDoaK?variant=Small%20Business%20(1-50%20employees)" target="_blank">$99/year</a>
     </div>
     <div class="pricing-option">
       <h3>Value adder</h3>
@@ -120,7 +120,7 @@ layout: default
         (50+ employees)<br>
         Enable your organization to work smarter.
       </p>
-      <a class="pricing-button" href="https://gum.co/JDoaK" target="_blank">$499/year</a>
+      <a class="pricing-button" href="https://gum.co/JDoaK?variant=Enterprise%20(50%2B%20employees)" target="_blank">$499/year</a>
     </div>
   </div>
   <a href="/pricing">Learn more</a>
