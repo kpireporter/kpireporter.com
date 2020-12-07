@@ -2,14 +2,49 @@ body {
   font-family: $font-family;
 }
 
+a {
+  color: $text-color-brand;
+  text-decoration: none !important;
+  &:hover {
+    color: #ffffff;
+  }
+  &:active,
+  &:visited {
+    color: darken($text-color-brand, 20%);
+  }
+}
+
 .site-header,
 .site-footer {
   border: 0;
 }
 
+.site-title {
+  display: block;
+  background-image: url('/assets/img/kpireporter_logo.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 67px;
+  height: 35px;
+  text-indent: -99999px;
+  position: relative;
+  top: 15px;
+}
+
 .site-header {
   line-height: $header-height;
   min-height: $header-height;
+}
+
+.site-nav {
+  .page-link {
+    color: $text-color-brand;
+    letter-spacing: $base-font-size * 0.1;
+    padding: ($spacing-unit / 4) ($spacing-unit / 4);
+    &:hover {
+      color: #ffffff;
+    }
+  }
 }
 
 .page-content {
@@ -40,15 +75,27 @@ body {
     margin-top: $spacing-unit;
   }
   .example {
+    --screenshot-height: 153px;
+    flex-direction: column;
+    justify-content: flex-end;
     flex: 1;
     h3 {
       color: #6FCF97;
+      font-size: 16px;
+      margin: 0;
+      height: 70px;
     }
     .screenshot-container {
+      transition: max-height 150ms ease-in-out, padding-top 150ms ease-in-out;
       display: block;
-      height: 158px;
+      max-height: var(--screenshot-height);
       overflow: hidden;
       margin: 0 auto;
+      padding-top: 5px;
+      &:hover {
+        padding-top: 0;
+        max-height: calc(var(--screenshot-height) + 5px);
+      }
       img {
         display: block;
         position: relative;
@@ -90,6 +137,9 @@ body {
   .text-inset {
     flex: 2;
     margin: 0 $spacing-unit 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     p {
       color: $text-color-accent;
       margin: 0;
@@ -113,5 +163,60 @@ body {
   }
   img {
     display: block;
+  }
+}
+
+.social-media-list {
+  li {
+    margin-left: 10px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  li a {
+    padding: 0;
+    border: 0;
+  }
+  .svg-icon {
+    color: $text-color-accent;
+    transform: scale(2);
+    position: relative;
+    padding: 6px;
+    &:hover {
+      color: $text-color;
+    }
+  }
+}
+
+.pricing-options {
+  display: flex;
+  justify-content: center;
+  margin: $spacing-unit 0;
+}
+.pricing-option {
+  border-radius: 5px;
+  flex: 1;
+  padding: $spacing-unit / 2;
+  background: #fff;
+  color: #000000;
+  max-width: $spacing-unit * 6;
+  margin-left: $spacing-unit;
+  h3 {
+    font-weight: bolder;
+  }
+  &:first-child {
+    margin-left: 0;
+  }
+}
+.pricing-button {
+  display: block;
+  background: $brand-color;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 3px;
+  &:hover {
+    color: #ffffff;
+    background: lighten($brand-color, 10%);
   }
 }

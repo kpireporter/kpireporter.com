@@ -104,4 +104,26 @@ layout: default
     30-day trial for commercial use.<br>
     <span class="subheading">Annual site licenses from $99/yr.</span>
   </h2>
+  <div class="pricing-options">
+    <div class="pricing-option">
+      <h3>Time saver</h3>
+      <p>
+        (1-50 employees)<br>
+        Save development time.<br>
+        Cross this off your list.
+      </p>
+      <a class="pricing-button" href="https://gum.co/JDoaK" target="_blank">$99/year</a>
+    </div>
+    <div class="pricing-option">
+      <h3>Value adder</h3>
+      <p>
+        (50+ employees)<br>
+        Enable your organization to work smarter.
+      </p>
+      <a class="pricing-button" href="https://gum.co/JDoaK" target="_blank">$499/year</a>
+    </div>
+  </div>
+  <a href="/pricing">Learn more</a>
 </section>
+
+<script src="https://gumroad.com/js/gumroad.js" async></script>
