@@ -14,7 +14,6 @@ author:
 
 theme: minima
 minima:
-  logo: /assets/img/kpireporter_logo.svg
   social_links:
     github: kpireporter
     twitter: False
