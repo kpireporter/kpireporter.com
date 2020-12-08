@@ -5,12 +5,12 @@ body {
 a {
   color: $text-color-brand;
   text-decoration: none !important;
-  &:hover {
-    color: #ffffff;
-  }
   &:active,
   &:visited {
     color: darken($text-color-brand, 20%);
+  }
+  &:hover {
+    color: #ffffff;
   }
 }
 
@@ -24,11 +24,11 @@ a {
   background-image: url('/assets/img/kpireporter_logo.svg');
   background-repeat: no-repeat;
   background-size: contain;
-  width: 67px;
-  height: 35px;
+  width: 63px;
+  height: 31px;
   text-indent: -99999px;
   position: relative;
-  top: 15px;
+  top: 19px;
 }
 
 .site-header {
@@ -37,12 +37,18 @@ a {
 }
 
 .site-nav {
+  border: 0;
   .page-link {
     color: $text-color-brand;
     letter-spacing: $base-font-size * 0.1;
     padding: ($spacing-unit / 4) ($spacing-unit / 4);
     &:hover {
       color: #ffffff;
+    }
+  }
+  .menu-icon {
+    > svg path {
+      fill: $brand-color;
     }
   }
 }
@@ -97,9 +103,7 @@ a {
         max-height: calc(var(--screenshot-height) + 5px);
       }
       img {
-        display: block;
-        position: relative;
-        top: 0;
+        display: inline-block;
         width: 228px;
       }
     }
@@ -236,4 +240,34 @@ pre, code {
   background: $background-color-accent;
   border: 0;
   padding: 3px 8px;
+}
+
+.footer-links {
+  text-align: center;
+  nav {
+    margin: $spacing-unit 0;
+    a {
+      display: inline-block;
+      margin-left: ($spacing-unit / 2);
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .site-hero {
+    .examples {
+      flex-direction: column;
+    }
+    .example {
+      .screenshot-container,
+      .screenshot-container:hover {
+        max-height: none;
+        top: 0;
+        padding-top: 0;
+      }
+    }
+  }
 }
