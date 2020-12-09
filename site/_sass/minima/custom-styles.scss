@@ -51,6 +51,13 @@ a {
       fill: $brand-color;
     }
   }
+  /* Drop-down menu */
+  input:checked ~ .trigger {
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+    background: $background-color;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .page-content {
@@ -82,9 +89,10 @@ a {
   }
   .example {
     --screenshot-height: 153px;
+    flex: 1;
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    flex: 1;
     h3 {
       color: #6FCF97;
       font-size: 16px;
@@ -92,6 +100,7 @@ a {
       height: 70px;
     }
     .screenshot-container {
+      flex: 1;
       transition: max-height 150ms ease-in-out, padding-top 150ms ease-in-out;
       display: block;
       max-height: var(--screenshot-height);
@@ -113,9 +122,9 @@ a {
 .feature-box {
   display: flex;
   margin: ($spacing-unit * 2) (-$spacing-unit);
+  padding: $spacing-unit;
   &.dark {
     border-radius: 10px;
-    padding: $spacing-unit;
     background-color: $background-color-accent;
   }
   &.r-align {
@@ -236,6 +245,29 @@ a {
   margin-top: $spacing-unit;
 }
 
+.post-content {
+  font-family: sans-serif;
+  line-height: 1.75em;
+  p, ul, ol {
+    margin-top: ($spacing-unit / 2);
+    max-width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ul, ol {
+    li {
+      margin-top: ($spacing-unit / 2);
+      margin-left: ($spacing-unit / 2);
+    }
+  }
+  li::marker {
+    color: $text-color-accent;
+  }
+  strong {
+    border-bottom: 1px solid $text-color-accent;
+  }
+}
+
 pre, code {
   background: $background-color-accent;
   border: 0;
@@ -258,16 +290,67 @@ pre, code {
 
 @media (max-width: 800px) {
   .site-hero {
+    padding-bottom: $spacing-unit;
     .examples {
       flex-direction: column;
     }
     .example {
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: $spacing-unit;
+      h3 {
+        flex: 1 1 50%;
+        font-size: 24px;
+        padding: 0 ($spacing-unit / 2);
+      }
+      .screenshot-container {
+        flex: 1 1 50%;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+        img {
+          width: auto;
+        }
+      }
       .screenshot-container,
       .screenshot-container:hover {
         max-height: none;
         top: 0;
         padding-top: 0;
       }
+      &:nth-child(2n) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .site-hero {
+    .examples {
+      .example {
+        flex-direction: column;
+        h3 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  .feature-box {
+    flex-direction: column-reverse !important;
+    .text-inset {
+      margin-top: $spacing-unit !important;
+    }
+    .graphic-inset.flush {
+      margin-bottom: 0;
+    }
+  }
+
+  .pricing-options {
+    flex-direction: column;
+    align-items: center;
+    .pricing-option {
+      width: 80%;
+      margin: 0 0 ($spacing-unit / 2);
     }
   }
 }
