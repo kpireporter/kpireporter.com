@@ -12,19 +12,19 @@ layout: default
     <div class="example">
       <h3>&ldquo;How is our outreach strategy going?&rdquo;</h3>
       <a href="https://kpi-reporter.readthedocs.io/en/latest/examples/latest-top-of-funnel-report/" target="_blank" rel="noopener noreferrer" class="screenshot-container">
-        <img src="/assets/img/example_top_of_funnel_report.png" />
+        {% asset example_top_of_funnel_report.png %}
       </a>
     </div>
     <div class="example">
       <h3>&ldquo;How healthy is production?&rdquo;</h3>
       <a href="https://kpi-reporter.readthedocs.io/en/latest/examples/latest-ops-report/" target="_blank" rel="noopener noreferrer" class="screenshot-container">
-        <img src="/assets/img/example_ops_report.png" />
+        {% asset example_ops_report.png %}
       </a>
     </div>
     <div class="example">
       <h3>&ldquo;How reliable is our build infrastructure?&rdquo;</h3>
       <a href="https://kpi-reporter.readthedocs.io/en/latest/examples/latest-ci-report/" target="_blank" rel="noopener noreferrer" class="screenshot-container">
-        <img src="/assets/img/example_ci_report.png" />
+        {% asset example_ci_report.png %}
       </a>
     </div>
   </div>
@@ -39,7 +39,7 @@ layout: default
     </p>
   </div>
   <div class="graphic-inset dark flush">
-    <img src="/assets/img/feature_on_prem.png" />
+    {% asset feature_on_prem.png %}
   </div>
 </section>
 <section class="feature-box r-align">
@@ -51,7 +51,7 @@ layout: default
     </p>
   </div>
   <div class="graphic-inset dark">
-    <img src="/assets/img/feature_customize.png" />
+    {% asset feature_customize.png %}
   </div>
 </section>
 <section class="feature-box dark">
@@ -64,38 +64,38 @@ layout: default
     </p>
   </div>
   <div class="graphic-inset dark">
-    <img src="/assets/img/feature_delivery.png" />
+    {% asset feature_delivery.png %}
   </div>
 </section>
 <section class="feature-box full">
   <h2>Leverage an ever-growing library of integrations.</h2>
   <div>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/mysql.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_mariadb.svg" />
+      {% asset logo_mariadb.svg %}
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/jenkins.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_jenkins.svg" />
+      {% asset logo_jenkins.svg %}
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/prometheus.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_prometheus.svg" />
+      {% asset logo_prometheus.svg %}
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/sendgrid.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_sendgrid.svg" />
+      {% asset logo_sendgrid.svg %}
     </a>
     <a class="plugin-logo">
-      <img src="/assets/img/logo_pagerduty.svg" />
+      {% asset logo_pagerduty.svg %}
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/slack.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_slack.svg" />
+      {% asset logo_slack.svg %}
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/plot.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_python.svg" />
+      {% asset logo_python.svg %}
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/s3.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
-      <img src="/assets/img/logo_s3.svg" />
+      {% asset logo_s3.svg %}
     </a>
     <a class="plugin-logo">
-      <img src="/assets/img/logo_elasticsearch.svg" />
+      {% asset logo_elasticsearch.svg %}
     </a>
   </div>
 </section>

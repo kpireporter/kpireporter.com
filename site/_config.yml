@@ -19,6 +19,10 @@ minima:
     github: kpireporter
     twitter: False
 
+assets:
+  sources:
+    - assets/img
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
