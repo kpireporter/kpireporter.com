@@ -8,20 +8,16 @@ header_pages:
   - about.md
   - pricing.md
   - blog.md
+social_links:
+  github: kpireporter
+
+assets:
+  sources:
+    - _sass
 
 author:
   name: KPI Reporter LLC
   email: help@kpireporter.com
-
-theme: minima
-minima:
-  social_links:
-    github: kpireporter
-    twitter: False
-
-assets:
-  sources:
-    - assets/img
 
 plugins:
   - jekyll-feed
