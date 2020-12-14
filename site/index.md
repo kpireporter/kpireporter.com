@@ -126,4 +126,4 @@ layout: default
   <a href="/pricing">Learn more</a>
 </section>
 
-<script src="https://gumroad.com/js/gumroad.js" async></script>
+<script src="https://gumroad.com/js/gumroad.js" defer></script>
