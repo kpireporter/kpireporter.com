@@ -35,3 +35,5 @@ A few guiding principles that shape this project:
      out of the box, it will always be the case that custom extensions will be
      required to achieve a particular implementation. The tool should embrace
      this reality.
+
+[Read More](https://kpi-reporter.readthedocs.io/en/latest/about.html)
