@@ -224,7 +224,7 @@ a {
 .pricing-button {
   display: block;
   background: $brand-color;
-  color: #ffffff;
+  color: #ffffff !important;
   text-transform: uppercase;
   padding: 10px;
   border-radius: 3px;
