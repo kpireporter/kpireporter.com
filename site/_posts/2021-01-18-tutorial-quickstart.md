@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title:  "Tutorial: Quick start"
 date:   2021-01-18 21:37:00 -0600
 categories: blog
