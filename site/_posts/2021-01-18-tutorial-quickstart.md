@@ -3,7 +3,7 @@ layout: post
 title:  "Tutorial: Quick start"
 date:   2021-01-18 21:37:00 -0600
 categories: blog
-----
+---
 
 ## Get the Docker image
 
@@ -18,7 +18,6 @@ docker pull kpireporter/kpireporter:edge
     Digest: sha256:84190806a8915e8de87d688da17af56fd8b1cae193dddbe27996d975721e94f3
     Status: Image is up to date for kpireporter/kpireporter:edge
     docker.io/kpireporter/kpireporter:edge
-    [?2004h
 
 
 
@@ -32,9 +31,6 @@ In order to have our KPI Reporter container "see" the database over Docker netwo
 ```bash
 docker network inspect tutorial_net 2>&1 >/dev/null || docker network create tutorial_net
 ```
-
-    [?2004h
-
 
 
 Start a MariaDB container and pass some environment variables ([as documented on Docker Hub](https://hub.docker.com/_/mariadb)) to initialize a database and a default user, which we will use when authenticating. Note the name of the container is **tutorial_mysql**--we will configure this as the DB host in the report configuration.
@@ -52,7 +48,6 @@ docker run --rm -d --net=tutorial_net \
     tutorial_mysql
     Cleaned up old DB container
     b93b0a566ede06d2cdc5603d2852a05b871962cceb4491452919be9dc71bf243
-    [?2004h
 
 
 
@@ -67,7 +62,7 @@ The [`config.yaml`](./config.yaml) file contains our report configuration. We wi
 cat config.yaml
 ```
 
-    ---2004l
+    ---
     title: Quickstart Tutorial
 
     datasources:
@@ -91,7 +86,6 @@ cat config.yaml
             plugin: static
             args:
                 output_dir: /out
-    [?2004h
 
 
 
@@ -106,9 +100,6 @@ docker run --rm --net=tutorial_net \
   kpireporter/kpireporter:edge
 ```
 
-    rm: cannot remove 'out/2021-01-12_2021-01-19_quickstart-tutorial/index.html': Permission denied
-    rm: cannot remove 'out/2021-01-12_2021-01-19_quickstart-tutorial/num_users/figure.png': Permission denied
-    INFO:kpireport.plugin:Loaded datasource plugins: ['jenkins', 'prometheus', 'mysql', 'googleanalytics']
     INFO:kpireport.plugin:Initialized datasource my_db
     INFO:matplotlib.font_manager:Generating new fontManager, this may take some time...
     INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'single_stat', 'prometheus.alert_summary', 'table']
@@ -118,7 +109,6 @@ docker run --rm --net=tutorial_net \
     INFO:kpireport.plugin:Initialized output driver html
     INFO:kpireport.report:Sending report via output driver html
     Generated report in 1645.40ms.
-    [?2004h
 
 
 
@@ -136,7 +126,7 @@ We will now add a new view that shows the total number of users in the database,
 cat config-2.yaml
 ```
 
-    ---2004l
+    ---
     title: Quickstart Tutorial
 
     datasources:
@@ -167,7 +157,6 @@ cat config-2.yaml
             plugin: static
             args:
                 output_dir: /out
-    [?2004h
 
 
 
@@ -181,10 +170,6 @@ docker run --rm --net=tutorial_net \
   kpireporter/kpireporter:edge
 ```
 
-    rm: cannot remove 'out/2021-01-12_2021-01-19_quickstart-tutorial/index.html': Permission denied
-    rm: cannot remove 'out/2021-01-12_2021-01-19_quickstart-tutorial/num_users/figure.png': Permission denied
-    rm: cannot remove 'out/latest-quickstart-tutorial/index.html': Permission denied
-    rm: cannot remove 'out/latest-quickstart-tutorial/num_users/figure.png': Permission denied
     INFO:kpireport.plugin:Loaded datasource plugins: ['jenkins', 'prometheus', 'mysql', 'googleanalytics']
     INFO:kpireport.plugin:Initialized datasource my_db
     INFO:matplotlib.font_manager:Generating new fontManager, this may take some time...
