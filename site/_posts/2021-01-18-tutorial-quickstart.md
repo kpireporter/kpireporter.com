@@ -5,53 +5,56 @@ date:   2021-01-18 21:37:00 -0600
 categories: blog
 ---
 
-## Get the Docker image
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/kpireporter/kpireporter-examples/HEAD?filepath=tutorial-quickstart%2FTutorialQuickstart.ipynb)
 
-For this tutorial, we will use the Docker image published to the public Docker Hub.
+## Install KPI Reporter
+
+For this tutorial, we will only need a few plugins. You can install `kpireport[all]` to install all available plugins.
 
 
 ```bash
-docker pull kpireporter/kpireporter:edge
+pip install kpireport kpireport-mysql kpireport-plot
 ```
 
-    edge: Pulling from kpireporter/kpireporter
-    Digest: sha256:84190806a8915e8de87d688da17af56fd8b1cae193dddbe27996d975721e94f3
-    Status: Image is up to date for kpireporter/kpireporter:edge
-    docker.io/kpireporter/kpireporter:edge
-
+    Requirement already satisfied: kpireport in /opt/conda/lib/python3.8/site-packages (0.0.1)
+    Requirement already satisfied: kpireport-mysql in /opt/conda/lib/python3.8/site-packages (0.0.2)
+    Requirement already satisfied: kpireport-plot in /opt/conda/lib/python3.8/site-packages (0.1.2)
+    Requirement already satisfied: pandas in /opt/conda/lib/python3.8/site-packages (from kpireport) (1.2.1)
+    Requirement already satisfied: stevedore in /opt/conda/lib/python3.8/site-packages (from kpireport) (3.3.0)
+    Requirement already satisfied: jinja2 in /opt/conda/lib/python3.8/site-packages (from kpireport) (2.11.2)
+    Requirement already satisfied: pyyaml in /opt/conda/lib/python3.8/site-packages (from kpireport) (5.4.1)
+    Requirement already satisfied: python-slugify in /opt/conda/lib/python3.8/site-packages (from kpireport) (4.0.1)
+    Requirement already satisfied: PyMySQL in /opt/conda/lib/python3.8/site-packages (from kpireport-mysql) (1.0.2)
+    Requirement already satisfied: matplotlib in /opt/conda/lib/python3.8/site-packages (from kpireport-plot) (3.3.3)
+    Requirement already satisfied: MarkupSafe>=0.23 in /opt/conda/lib/python3.8/site-packages (from jinja2->kpireport) (1.1.1)
+    Requirement already satisfied: python-dateutil>=2.1 in /opt/conda/lib/python3.8/site-packages (from matplotlib->kpireport-plot) (2.8.1)
+    Requirement already satisfied: cycler>=0.10 in /opt/conda/lib/python3.8/site-packages (from matplotlib->kpireport-plot) (0.10.0)
+    Requirement already satisfied: pillow>=6.2.0 in /opt/conda/lib/python3.8/site-packages (from matplotlib->kpireport-plot) (8.1.0)
+    Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.3 in /opt/conda/lib/python3.8/site-packages (from matplotlib->kpireport-plot) (2.4.7)
+    Requirement already satisfied: kiwisolver>=1.0.1 in /opt/conda/lib/python3.8/site-packages (from matplotlib->kpireport-plot) (1.3.1)
+    Requirement already satisfied: numpy>=1.15 in /opt/conda/lib/python3.8/site-packages (from matplotlib->kpireport-plot) (1.19.5)
+    Requirement already satisfied: six in /opt/conda/lib/python3.8/site-packages (from cycler>=0.10->matplotlib->kpireport-plot) (1.15.0)
+    Requirement already satisfied: pytz>=2017.3 in /opt/conda/lib/python3.8/site-packages (from pandas->kpireport) (2020.5)
+    Requirement already satisfied: text-unidecode>=1.3 in /opt/conda/lib/python3.8/site-packages (from python-slugify->kpireport) (1.3)
+    Requirement already satisfied: pbr!=2.1.0,>=2.0.0 in /opt/conda/lib/python3.8/site-packages (from stevedore->kpireport) (5.5.1)
 
 
 ## Set up test database
 
-For this tutorial, we will use a temporary MySQL database running in a Docker container. It will be initialized with one table `tutorial.new_users`, which we will use to render visualizations from.
-
-In order to have our KPI Reporter container "see" the database over Docker networking, we have to create our own Docker network instead of utilizing the default `bridge` network.
+For this tutorial, we'll be using a test database on a local MySQL server. The [initdb.sql](./initdb.sql) file has the test data; you can update this file and re-run this cell to re-seed the local database.
 
 
 ```bash
-docker network inspect tutorial_net 2>&1 >/dev/null || docker network create tutorial_net
+# Start the server in the background
+[[ -f /tmp/mysql.pid ]] || (mysqld_safe &) && while [[ ! -f /tmp/mysql.pid ]]; do sleep 1; done
+# Initialize the database and tables
+mysql <initdb.sql && echo "Database initialized."
 ```
 
+    2021-01-24T01:24:00.601626Z mysqld_safe Logging to '/tmp/mysql_error.log'.
+    2021-01-24T01:24:00.630732Z mysqld_safe Starting mysqld daemon with databases from /tmp/mysql
+    Database initialized.
 
-Start a MariaDB container and pass some environment variables ([as documented on Docker Hub](https://hub.docker.com/_/mariadb)) to initialize a database and a default user, which we will use when authenticating. Note the name of the container is **tutorial_mysql**--we will configure this as the DB host in the report configuration.
-
-
-```bash
-docker stop tutorial_mysql 2>/dev/null && echo "Cleaned up old DB container"
-docker run --rm -d --net=tutorial_net \
-  --env MYSQL_RANDOM_ROOT_PASSWORD=1 \
-  --env MYSQL_USER=kpireporter --env MYSQL_PASSWORD=kpireporter --env MYSQL_DATABASE=tutorial \
-  -v $(realpath initdb.sql):/docker-entrypoint-initdb.d/initdb.sql \
-  --name=tutorial_mysql mariadb:latest
-```
-
-    tutorial_mysql
-    Cleaned up old DB container
-    b93b0a566ede06d2cdc5603d2852a05b871962cceb4491452919be9dc71bf243
-
-
-
-> **Note**: you may need to wait a few (~30) seconds for the database to fully initialize before proceeding to the next step.
 
 ## Run your first report
 
@@ -69,9 +72,8 @@ cat config.yaml
         my_db:
             plugin: mysql
             args:
-                host: tutorial_mysql
-                user: ${DATABASE_USER}
-                password: ${DATABASE_PASSWORD}
+                host: localhost
+                user: ${NB_USER}
 
     views:
         num_users:
@@ -84,37 +86,24 @@ cat config.yaml
     outputs:
         html:
             plugin: static
-            args:
-                output_dir: /out
-
 
 
 By default, the report will be rendered as HTML using the [Static](https://kpi-reporter.readthedocs.io/en/latest/plugins/static.html) plugin.
 
 
 ```bash
-rm -rf out && mkdir -p out
-docker run --rm --net=tutorial_net \
-  -v $(realpath config.yaml):/etc/kpireporter/config.yaml -v $(realpath out):/out \
-  --env DATABASE_USER=kpireporter --env DATABASE_PASSWORD=kpireporter \
-  kpireporter/kpireporter:edge
+kpireport -c config.yaml
 ```
 
+    INFO:kpireport.plugin:Loaded datasource plugins: ['mysql', 'jenkins', 'prometheus']
     INFO:kpireport.plugin:Initialized datasource my_db
-    INFO:matplotlib.font_manager:Generating new fontManager, this may take some time...
-    INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'single_stat', 'prometheus.alert_summary', 'table']
+    INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'single_stat', 'prometheus.alert_summary']
     INFO:kpireport.plugin:Initialized view num_users
-    WARNING:kpireport.plugin:Could not load plugin 'scp': No module named 'kpireport_scp.SCPOutputDriver'
-    INFO:kpireport.plugin:Loaded output driver plugins: ['static', 's3', 'sendgrid', 'smtp', 'slack']
+    INFO:kpireport.plugin:Loaded output driver plugins: ['static', 'slack', 's3', 'scp', 'sendgrid', 'smtp']
     INFO:kpireport.plugin:Initialized output driver html
     INFO:kpireport.report:Sending report via output driver html
-    Generated report in 1645.40ms.
+    Generated report in 1439.04ms.
 
-
-
-## Examine output
-
-**[View output HTML](./out/latest-quickstart-tutorial/index.html)**
 
 ## Adding a new view
 
@@ -133,59 +122,45 @@ cat config-2.yaml
         my_db:
             plugin: mysql
             args:
-                host: tutorial_mysql
-                user: ${DATABASE_USER}
-                password: ${DATABASE_PASSWORD}
+                host: localhost
+                user: ${NB_USER}
 
     views:
         num_users:
-            cols: 3
+            cols: 4
             plugin: plot
             args:
                 datasource: my_db
                 query: select * from tutorial.new_users
                 kind: bar
         total_users:
-            cols: 3
+            title: Total new users
+            cols: 2
             plugin: single_stat
             args:
                 datasource: my_db
-                query: select sum(num_users) from tutorial.new_users
+                query: select sum(num_new_users) from tutorial.new_users
 
     outputs:
         html:
             plugin: static
-            args:
-                output_dir: /out
-
 
 
 
 ```bash
-rm -rf out && mkdir -p out
-# Note we now pass "config-2.yaml" as the bind mount source.
-docker run --rm --net=tutorial_net \
-  -v $(realpath config-2.yaml):/etc/kpireporter/config.yaml -v $(realpath out):/out \
-  --env DATABASE_USER=kpireporter --env DATABASE_PASSWORD=kpireporter \
-  kpireporter/kpireporter:edge
+kpireport -c config-2.yaml
 ```
 
-    INFO:kpireport.plugin:Loaded datasource plugins: ['jenkins', 'prometheus', 'mysql', 'googleanalytics']
+    INFO:kpireport.plugin:Loaded datasource plugins: ['mysql', 'jenkins', 'prometheus']
     INFO:kpireport.plugin:Initialized datasource my_db
-    INFO:matplotlib.font_manager:Generating new fontManager, this may take some time...
-    INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'single_stat', 'prometheus.alert_summary', 'table']
+    INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'single_stat', 'prometheus.alert_summary']
     INFO:kpireport.plugin:Initialized view num_users
     INFO:kpireport.plugin:Initialized view total_users
-    WARNING:kpireport.plugin:Could not load plugin 'scp': No module named 'kpireport_scp.SCPOutputDriver'
-    INFO:kpireport.plugin:Loaded output driver plugins: ['static', 's3', 'sendgrid', 'smtp', 'slack']
+    INFO:kpireport.plugin:Loaded output driver plugins: ['static', 'slack', 's3', 'scp', 'sendgrid', 'smtp']
     INFO:kpireport.plugin:Initialized output driver html
     INFO:kpireport.report:Sending report via output driver html
-    Generated report in 1728.26ms.
-    [?2004h
+    Generated report in 1346.79ms.
 
-
-
-**[View output HTML](./out/latest-quickstart-tutorial/index.html)**
 
 Notice that we added a `title` to the single stat view to give more context as to what the number indicates. Additionally, the view was placed side-by-side with the first plot by adjusting the `columns` parameter for each view. By default every report uses a 6-column layout, but this [can be configured at the theme level](https://kpi-reporter.readthedocs.io/en/latest/api/report.html#kpireport.report.Theme.num_columns).
 
@@ -193,8 +168,3 @@ Notice that we added a `title` to the single stat view to give more context as t
 
 This example has hopefully given you some ideas on how to get started creating your first report :)
 If you are interested in not outputting HTML, but instead sending via email, refer to the plugin documentation for, e.g., the [SMTP](https://kpi-reporter.readthedocs.io/en/latest/plugins/smtp.html) or [SendGrid](https://kpi-reporter.readthedocs.io/en/stable/plugins/sendgrid.html) plugins.
-
-
-```bash
-
-```
