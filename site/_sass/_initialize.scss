@@ -46,5 +46,6 @@ $on-large:         $on-laptop !default;
   "variables",
   "base",                    // Defines element resets.
   "layout",                  // Defines structure and style based on CSS selectors.
+  "highlight",
   "minima/custom-styles"     // Hook to override existing styles.
 ;
