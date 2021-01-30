@@ -252,6 +252,37 @@ a {
   }
 }
 
+.follow-form {
+  flex: 1;
+  display: flex;
+  height: $spacing-unit;
+  input[type=email] {
+    flex: 1;
+    background: $background-color-accent;
+    border: 0;
+    border-radius: 3px 0 0 3px;
+    padding: 10px;
+    color: $text-color;
+    &::placeholder {
+      color: fade($text-color, 50%);
+    }
+  }
+  button {
+    flex: 1;
+    cursor: pointer;
+    border: 0;
+    background: $brand-color;
+    font-family: $font-family;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 0 3px 3px 0;
+    &:hover {
+      background: lighten($brand-color, 10%);
+    }
+  }
+}
+
 .gumroad-product-embed {
   text-align: center;
   padding-top: $spacing-unit;

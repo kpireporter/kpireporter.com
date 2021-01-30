@@ -129,3 +129,17 @@ layout: default
   </div>
   <a href="/pricing">Learn more</a>
 </section>
+<section class="feature-box">
+  <div class="text-inset">
+    <h2>Want to follow along?</h2>
+    <p>
+      Sign up to receive the occasional email announcing a new
+      tutorial or feature release. We value your inbox.
+    </p>
+  </div>
+  <form action="https://gumroad.com/follow_from_embed_form" class="follow-form" method="post">
+    <input name="seller_id" type="hidden" value="2536543773530">
+    <input name="email" placeholder="Your email address" type="email">
+    <button type="submit">Follow</button>
+  </form>
+</section>
