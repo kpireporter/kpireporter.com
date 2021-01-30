@@ -30,6 +30,28 @@ layout: default
   </div>
   <div class="shadow-box"></div>
 </section>
+
+<section class="feature-box full tight">
+  <h2>Get started now</h2>
+  <div class="pricing-options">
+    <div class="pricing-option dark">
+      <p>
+        Follow along with the quickstart tutorial.
+      </p>
+      <a class="pricing-button" href="/blog/2021/01/18/tutorial-quickstart.html">Quick-start tutorial</a>
+    </div>
+    <div class="pricing-option dark">
+      <p>
+        Or, just go straight to the code on GitHub.
+      </p>
+      <a class="pricing-button" href="https://github.com/kpireporter/kpireporter" target="_blank" rel="noopener noreferrer">
+        <svg class="svg-icon white"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg>
+        Get the code
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="feature-box dark">
   <div class="text-inset">
     <h2>Deploy on-premises,<br>in restricted environments.</h2>
@@ -106,7 +128,7 @@ layout: default
 <section class="feature-box dark full">
   <h2>
     30-day trial for commercial use.<br>
-    <span class="subheading">Annual site licenses from $99/yr.</span>
+    <a href="/pricing">Annual site licenses from $99/yr.</a>
   </h2>
   <div class="pricing-options">
     <div class="pricing-option">
@@ -127,7 +149,6 @@ layout: default
       <a class="pricing-button" href="https://gum.co/JDoaK?variant=Enterprise%20(50%2B%20employees)" target="_blank">$499/year</a>
     </div>
   </div>
-  <a href="/pricing">Learn more</a>
 </section>
 <section class="feature-box">
   <div class="text-inset">

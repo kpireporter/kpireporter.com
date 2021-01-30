@@ -144,6 +144,10 @@ a {
     display: block;
     text-align: center;
   }
+  &.tight {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
   h2 {
     margin-bottom: ($spacing-unit / 4);
     font-weight: bold;
@@ -222,7 +226,7 @@ a {
 .pricing-options {
   display: flex;
   justify-content: center;
-  margin: $spacing-unit 0;
+  margin: $spacing-unit 0 0;
 }
 .pricing-option {
   border-radius: 5px;
@@ -237,6 +241,10 @@ a {
   }
   &:first-child {
     margin-left: 0;
+  }
+  &.dark {
+    background: $background-color-accent;
+    color: $text-color;
   }
 }
 .pricing-button {
