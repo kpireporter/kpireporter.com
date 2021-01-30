@@ -58,12 +58,11 @@ layout: default
   <div class="text-inset">
     <h2>Deliver however.</h2>
     <p>
-      Pick your report frequency (weekly is a good starting point.) Send
-      reports via email or Slack, export to HTML and serve yourself, or write
-      your own way.
+      Pick your report frequency. Send reports via email or Slack, export to HTML, or
+      write your own way.
     </p>
   </div>
-  <div class="graphic-inset dark">
+  <div class="graphic-inset dark pop-out">
     {% asset feature_delivery.png %}
   </div>
 </section>
@@ -84,6 +83,7 @@ layout: default
     </a>
     <a class="plugin-logo">
       {% asset logo_pagerduty.svg %}
+      <span class="coming-soon">Coming soon</span>
     </a>
     <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/slack.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
       {% asset logo_slack.svg %}
@@ -96,6 +96,10 @@ layout: default
     </a>
     <a class="plugin-logo">
       {% asset logo_elasticsearch.svg %}
+      <span class="coming-soon">Coming soon</span>
+    </a>
+    <a href="https://kpi-reporter.readthedocs.io/en/latest/plugins/googleanalytics.html" target="_blank" rel="noopener noreferrer" class="plugin-logo">
+      {% asset logo_googleanalytics.png width=240 %}
     </a>
   </div>
 </section>

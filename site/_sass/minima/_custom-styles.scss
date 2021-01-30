@@ -1,5 +1,7 @@
 body {
   font-family: $font-family;
+  background-image: linear-gradient($background-color-accent, $background-color 200px);
+  background-attachment: fixed;
 }
 
 a {
@@ -40,7 +42,9 @@ a {
   border: 0;
   .page-link {
     color: $text-color-brand;
-    letter-spacing: $base-font-size * 0.1;
+    font-size: $base-font-size * 0.8;
+    letter-spacing: $base-font-size * 0.2;
+    text-transform: uppercase;
     padding: ($spacing-unit / 4) ($spacing-unit / 4);
     &:hover {
       color: #ffffff;
@@ -164,6 +168,11 @@ a {
     &.flush {
       margin: -$spacing-unit;
     }
+    &.pop-out {
+      margin-top: -($spacing-unit * 2);
+      // margin-right: -$spacing-unit;
+      margin-left: -$spacing-unit;
+    }
   }
 }
 
@@ -176,6 +185,15 @@ a {
   }
   img {
     display: block;
+  }
+  &:hover img {
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, .7));
+  }
+  .coming-soon {
+    text-transform: uppercase;
+    letter-spacing: $base-font-size * 0.1;
+    font-size: $base-font-size * 0.8;
+    color: $text-color-accent;
   }
 }
 
@@ -244,7 +262,6 @@ a {
 
 .post-header,
 .page-heading {
-  text-align: center;
   margin-top: $spacing-unit;
 }
 
@@ -273,10 +290,23 @@ pre, code {
   padding: 3px 8px;
 }
 
+.binder-launch {
+  color: lighten($text-color-accent, 30%);
+  border-radius: 5px;
+  background-color: $background-color-accent;
+  font-size: $base-font-size;
+  padding: ($spacing-unit / 4);
+  p {
+    margin: 0;
+  }
+}
+
 .footer-links {
-  text-align: center;
+  display: flex;
+  margin: $spacing-unit 0;
+  font-size: $base-font-size * 0.8;
   nav {
-    margin: $spacing-unit 0;
+    flex: 1;
     a {
       display: inline-block;
       margin-left: ($spacing-unit / 2);
@@ -285,11 +315,12 @@ pre, code {
       }
     }
   }
-}
-
-.rss-subscribe {
-  text-align: center;
-  font-size: 0.75rem;
+  .social-links {
+    flex: 1;
+  }
+  .copyright {
+    flex: 1;
+  }
 }
 
 @media (max-width: 800px) {
@@ -334,6 +365,7 @@ pre, code {
         flex-direction: column;
         h3 {
           font-size: 18px;
+          margin-bottom: $spacing-unit / 2;
         }
       }
     }
@@ -347,6 +379,9 @@ pre, code {
     .graphic-inset.flush {
       margin-bottom: 0;
     }
+    .graphic-inset.pop-out {
+      margin: 0;
+    }
   }
 
   .pricing-options {
@@ -355,6 +390,17 @@ pre, code {
     .pricing-option {
       width: 80%;
       margin: 0 0 ($spacing-unit / 2);
+    }
+  }
+
+  .footer-links {
+    flex-direction: column;
+    text-align: center;
+    > * {
+      margin-bottom: $spacing-unit;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

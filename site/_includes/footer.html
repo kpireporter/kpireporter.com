@@ -1,47 +1,55 @@
 <footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+  <data class="u-url" href="{{ " /" | relative_url }}"></data>
 
   <div class="wrapper">
-    <div class="social-links">
-      {%- assign social = site.social_links -%}
-      <ul class="social-media-list">
-        <li>
-          <a href="{{ 'feed.xml' | relative_url }}">
-            <svg class="svg-icon"><use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use></svg>
-          </a>
-        </li>
-        {%- if social.github -%}
-        <li>
-          <a rel="me" href="https://github.com/{{ social.github | cgi_escape | escape }}" title="{{ social.github | escape }}">
-            <svg class="svg-icon grey"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg>
-          </a>
-        </li>
-        {%- endif -%}
-        {%- if social.twitter -%}
-        <li>
-          <a rel="me" href="https://twitter.com/{{ social.twitter | cgi_escape | escape }}" title="{{ social.twitter | escape }}">
-            <svg class="svg-icon grey"><use xlink:href="{{ '/assets/minima-social-icons.svg#twitter' | relative_url }}"></use></svg>
-          </a>
-        </li>
-        {%- endif -%}
-      </ul>
-    </div>
-
     <div class="footer-links">
       <nav>
         {%- assign default_paths = site.pages | map: "path" -%}
         {%- assign page_paths = site.header_pages | default: default_paths -%}
         {%- for path in page_paths -%}
-          {%- assign my_page = site.pages | where: "path", path | first -%}
-          {%- if my_page.title -%}
-          <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-          {%- endif -%}
+        {%- assign my_page = site.pages | where: "path", path | first -%}
+        {%- if my_page.title -%}
+        <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+        {%- endif -%}
         {%- endfor -%}
         <a href="/sitemap.xml" rel="sitemap">Sitemap</a>
       </nav>
 
+      <div class="social-links">
+        {%- assign social = site.social_links -%}
+        <ul class="social-media-list">
+          <li>
+            <a href="{{ 'feed.xml' | relative_url }}">
+              <svg class="svg-icon">
+                <use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use>
+              </svg>
+            </a>
+          </li>
+          {%- if social.github -%}
+          <li>
+            <a rel="me" href="https://github.com/{{ social.github | cgi_escape | escape }}"
+              title="{{ social.github | escape }}">
+              <svg class="svg-icon grey">
+                <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
+              </svg>
+            </a>
+          </li>
+          {%- endif -%}
+          {%- if social.twitter -%}
+          <li>
+            <a rel="me" href="https://twitter.com/{{ social.twitter | cgi_escape | escape }}"
+              title="{{ social.twitter | escape }}">
+              <svg class="svg-icon grey">
+                <use xlink:href="{{ '/assets/minima-social-icons.svg#twitter' | relative_url }}"></use>
+              </svg>
+            </a>
+          </li>
+          {%- endif -%}
+        </ul>
+      </div>
+
       {% if site.author %}
-      <div>
+      <div class="copyright">
         Copyright 2020 {{ site.author.name }}<br>
         <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
       </div>
