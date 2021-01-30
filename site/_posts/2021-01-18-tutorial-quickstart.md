@@ -5,7 +5,15 @@ date:   2021-01-18 21:37:00 -0600
 categories: blog
 ---
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/kpireporter/kpireporter-examples/HEAD?filepath=tutorial-quickstart%2FTutorialQuickstart.ipynb)
+<div class="binder-launch">
+  <p>
+    This tutorial is interactive, and you can open it in a live web environment to try
+    it out for yourself, without installing anything on your machine! Click here
+    to proceed: <a href="https://mybinder.org/v2/gh/kpireporter/kpireporter-examples/HEAD?filepath=tutorial-quickstart%2FTutorialQuickstart.ipynb" rel="noopener noreferrer" target="_blank">
+      {% asset binder_badge.svg %}
+    </a>
+  </p>
+</div>
 
 ## Install KPI Reporter
 
