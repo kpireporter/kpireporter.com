@@ -4,7 +4,6 @@ title:  "Tutorial: Quick start"
 date:   2021-01-18 21:37:00 -0600
 categories: blog
 ---
-
 <div class="binder-launch">
   <p>
     This tutorial is interactive, and you can open it in a live web environment to try
@@ -137,14 +136,14 @@ views:
             kind: bar
 
 outputs:
-    png:
-        plugin: static
-        args:
-            output_format: png
     html:
         plugin: static
         args:
             output_format: html
+    png:
+        plugin: static
+        args:
+            output_format: png
 </pre>
 </details>
 
@@ -167,16 +166,16 @@ kpireport -c config.yaml
 INFO:kpireport.plugin:Initialized datasource my_db
 INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'single_stat', 'prometheus.alert_summary', 'table']
 INFO:kpireport.plugin:Initialized view num_users
-INFO:kpireport.plugin:Loaded output driver plugins: ['static', 's3', 'slack', 'scp', 'sendgrid', 'smtp']
-INFO:kpireport.plugin:Initialized output driver png
+INFO:kpireport.plugin:Loaded output driver plugins: ['s3', 'slack', 'scp', 'sendgrid', 'smtp', 'static']
 INFO:kpireport.plugin:Initialized output driver html
+INFO:kpireport.plugin:Initialized output driver png
+INFO:kpireport.report:Sending report via output driver html
 INFO:kpireport.report:Sending report via output driver png
 QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-jovyan'
 Loading page (1/2)
 Rendering (2/2)
 Done
-INFO:kpireport.report:Sending report via output driver html
-Generated report in 2681.87ms.
+Generated report in 2553.76ms.
 </pre>
 </details>
 
@@ -237,25 +236,29 @@ views:
         args:
             datasource: my_db
             query: |
-                select `date`, sum(num_new_users) over (order by `date`) as total_users
-                from tutorial.new_users
+                select `date`, (
+                    select sum(num_new_users)
+                    from tutorial.new_users u2
+                    where u2.`date` < u1.`date`
+                ) as total_users
+                from tutorial.new_users u1
 
 outputs:
-    png:
-        plugin: static
-        args:
-            output_format: png
     html:
         plugin: static
         args:
-            output_format: html</pre>
+            output_format: html
+    png:
+        plugin: static
+        args:
+            output_format: png</pre>
 </details>
 
 We'll re-run the report with this new configuration:
 
 
 ```bash
-USER=$NB_USER kpireport -c config-2.yaml
+kpireport -c config-2.yaml
 ```
 
 <details>
@@ -266,16 +269,16 @@ INFO:kpireport.plugin:Loaded view plugins: ['jenkins.build_summary', 'plot', 'si
 INFO:kpireport.plugin:Initialized view num_users
 INFO:kpireport.plugin:Initialized view total_users
 INFO:kpireport.plugin:Initialized view users_over_time
-INFO:kpireport.plugin:Loaded output driver plugins: ['static', 's3', 'slack', 'scp', 'sendgrid', 'smtp']
-INFO:kpireport.plugin:Initialized output driver png
+INFO:kpireport.plugin:Loaded output driver plugins: ['s3', 'slack', 'scp', 'sendgrid', 'smtp', 'static']
 INFO:kpireport.plugin:Initialized output driver html
+INFO:kpireport.plugin:Initialized output driver png
+INFO:kpireport.report:Sending report via output driver html
 INFO:kpireport.report:Sending report via output driver png
 QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-jovyan'
 Loading page (1/2)
 Rendering (2/2)
 Done
-INFO:kpireport.report:Sending report via output driver html
-Generated report in 3998.83ms.
+Generated report in 3808.97ms.
 </pre>
 </details>
 
@@ -287,7 +290,6 @@ cat _build/latest-quickstart-tutorial-v2.png | display
 ```
 
 {% asset 2021-01-18-tutorial-quickstart/TutorialQuickstart_18_1.png %}
-
 
 
 Notice that we added a `title` to the single stat view to give more context as to what the number indicates. Additionally, the stat view was placed side-by-side with the first plot by adjusting the `columns` parameter for each view. By default every report uses a 6-column layout, but this [can be configured at the theme level](https://kpi-reporter.readthedocs.io/en/latest/api/report.html#kpireport.report.Theme.num_columns).
