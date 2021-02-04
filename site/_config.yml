@@ -4,6 +4,7 @@ description: >-
   periodic reports for the metrics that matter for your team or project.
 url: https://kpireporter.com
 documentation_url: https://kpi-reporter.readthedocs.io/
+google_analytics: G-4X2NX02VHJ
 header_pages:
   - about.md
   - pricing.md
