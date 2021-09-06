@@ -28,6 +28,12 @@
         <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
         {%- endif -%}
         {%- endfor -%}
+        <a class="page-link" href="https://github.com/kpireporter/kpireporter" target="_blank"
+          rel="noopener noreferrer"><svg class="svg-icon white">
+            <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
+          </svg>
+          Code
+        </a>
       </div>
     </nav>
     {%- endif -%}

@@ -70,22 +70,20 @@ a {
 
 .site-hero {
   position: relative;
-  background-color: $brand-color;
+  // background-color: $brand-color;
   padding: $spacing-unit $spacing-unit 0;
   margin: 0 (-$spacing-unit) 0 (-$spacing-unit);
-  text-align: center;
+  text-align: left;
   h1 {
-    font-size: $base-font-size * 1.5;
+    @include relative-font-size(4.0);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
+    line-height: 1.0em;
     max-width: 610px;
     margin: 0 auto;
-  }
-  .shadow-box {
-    background-image: linear-gradient(0, rgba(0, 0, 0, .3) , rgba(0, 0, 0, 0) 12px);
-    height: 12px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    aside {
+      @include relative-font-size(2.0);
+      color: $text-color-accent;
+    }
   }
   .examples {
     display: flex;
@@ -149,8 +147,8 @@ a {
     margin-bottom: 0;
   }
   h2 {
+    @include relative-font-size(1.75);
     margin-bottom: ($spacing-unit / 4);
-    font-weight: bold;
     .subheading {
       color: $text-color-accent;
     }
@@ -227,6 +225,9 @@ a {
   display: flex;
   justify-content: center;
   margin: $spacing-unit 0 0;
+  &.right {
+    justify-content: right;
+  }
 }
 .pricing-option {
   border-radius: 5px;
@@ -236,6 +237,7 @@ a {
   color: #000000;
   max-width: $spacing-unit * 6;
   margin-left: $spacing-unit;
+  text-align: center;
   h3 {
     font-weight: bolder;
   }
@@ -248,6 +250,7 @@ a {
   }
 }
 .pricing-button {
+  transition: translateY 250ms;
   display: block;
   background: $brand-color;
   color: #ffffff !important;
@@ -256,7 +259,8 @@ a {
   border-radius: 3px;
   &:hover {
     color: #ffffff;
-    background: lighten($brand-color, 10%);
+    background: darken($brand-color, 10%);
+    transform: translateY(-2px);
   }
 }
 
