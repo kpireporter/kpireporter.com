@@ -85,40 +85,6 @@ a {
       color: $text-color-accent;
     }
   }
-  .examples {
-    display: flex;
-    margin-top: $spacing-unit;
-  }
-  .example {
-    --screenshot-height: 153px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    h3 {
-      color: #6FCF97;
-      font-size: 16px;
-      margin: 0;
-      height: 70px;
-    }
-    .screenshot-container {
-      flex: 1;
-      transition: max-height 150ms ease-in-out, padding-top 150ms ease-in-out;
-      display: block;
-      max-height: var(--screenshot-height);
-      overflow: hidden;
-      margin: 0 auto;
-      padding-top: 5px;
-      &:hover {
-        padding-top: 0;
-        max-height: calc(var(--screenshot-height) + 5px);
-      }
-      img {
-        display: inline-block;
-        width: 228px;
-      }
-    }
-  }
 }
 
 .feature-box {
@@ -133,9 +99,6 @@ a {
     flex-direction: row-reverse;
     .text-inset {
       margin: 0 0 0 $spacing-unit;
-    }
-    .graphic-inset {
-      text-align: left;
     }
   }
   &.full {
@@ -166,14 +129,17 @@ a {
   }
   .graphic-inset {
     flex: 3;
-    text-align: right;
     &.flush {
       margin: -$spacing-unit;
     }
     &.pop-out {
       margin-top: -($spacing-unit * 2);
-      // margin-right: -$spacing-unit;
-      margin-left: -$spacing-unit;
+      margin-right: -($spacing-unit * 1.25);
+    }
+    .highlight {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
     }
   }
 }

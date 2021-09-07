@@ -22,6 +22,19 @@ layout: default
       Your infrastructure is code, why not your reports?
     </p>
   </div>
+  <div class="graphic-inset pop-out">
+  {% highlight yaml %}
+---
+title: Something
+datasources:
+mysql:
+  plugin: mysql
+  args:
+    host: 172.168.100.2
+    user: reporting
+    password: ${MYSQL_PASSWORD}
+  {% endhighlight %}
+  </div>
 </section>
 <section class="feature-box r-align">
   <div class="text-inset">
