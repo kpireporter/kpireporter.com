@@ -128,13 +128,18 @@ a {
     }
   }
   .graphic-inset {
-    flex: 3;
+    flex: 1;
     &.flush {
       margin: -$spacing-unit;
     }
     &.pop-out {
+      flex: 3;
       margin-top: -($spacing-unit * 2);
       margin-right: -($spacing-unit * 1.25);
+    }
+    &.scroll {
+      max-height: 20em;
+      overflow-y: scroll;
     }
     .highlight {
       padding: 1rem;

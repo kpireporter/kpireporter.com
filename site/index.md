@@ -22,17 +22,30 @@ layout: default
       Your infrastructure is code, why not your reports?
     </p>
   </div>
-  <div class="graphic-inset pop-out">
+  <div class="graphic-inset pop-out scroll">
   {% highlight yaml %}
 ---
-title: Something
+title: New signups
 datasources:
-mysql:
-  plugin: mysql
-  args:
-    host: 172.168.100.2
-    user: reporting
-    password: ${MYSQL_PASSWORD}
+  mysql:
+    plugin: mysql
+    args:
+      host: 172.168.100.2
+      user: reporting
+      password: ${MYSQL_PASSWORD}
+views:
+  daily_signups:
+    plugin: plot
+    args:
+      query: |
+        select * from users
+        where created_at > {from}
+output:
+  execs:
+    plugin: sendgrid
+    args:
+      email_to: execteam@example.org
+      email_from: kpireport-noreply@example.org
   {% endhighlight %}
   </div>
 </section>
@@ -44,6 +57,9 @@ mysql:
       No internet access or public ingress required.
     </p>
   </div>
+  <div class="graphic-inset">
+    {% asset homepage_deploy.svg %}
+  </div>
 </section>
 <section class="feature-box dark">
   <div class="text-inset">
@@ -51,6 +67,9 @@ mysql:
     <p>
       Easily integrate reports into your existing communications channels.
     </p>
+  </div>
+  <div class="graphic-inset">
+    {% asset homepage_send.svg %}
   </div>
 </section>
 <section class="feature-box r-align">
@@ -60,6 +79,9 @@ mysql:
       A flexible plugin architecture lets you define custom views, data integrations,
       or output formats as Python modules. All code is open source and free to modify.
     </p>
+  </div>
+  <div class="graphic-inset">
+    {% asset homepage_hack.svg %}
   </div>
 </section>
 <section class="feature-box full">
