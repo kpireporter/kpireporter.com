@@ -95,6 +95,7 @@ VALUES
 
 ```bash
 # Start the server in the background
+rm -f /tmp/mysql.sock.lock
 [[ -f /tmp/mysql.pid ]] || (mysqld &) && while [[ ! -f /tmp/mysql.pid ]]; do sleep 1; done
 # Initialize the database and tables
 mysql <initdb.sql && echo "Database initialized."
